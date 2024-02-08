@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentFigure.some(index => cells[currentPosition + index + GRID_WIDTH].classList.contains('taken'))) {
             currentFigure.forEach(index => cells[currentPosition + index].classList.add('taken'))
             random = nextRandom
-            random = Math.floor(Math.random() * figures.length)
+            nextRandom = Math.floor(Math.random() * figures.length)
             currentFigure = figures[random][currentRotation]
             currentPosition = 4
             draw()
