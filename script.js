@@ -220,4 +220,4 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     document.addEventListener("keyup", control)
-});
+})
