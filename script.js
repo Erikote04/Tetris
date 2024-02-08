@@ -62,6 +62,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     timer = setInterval(moveDown, 1000)
+
+    function control(e) {
+        if (e.keyCode === 37) {
+            moveLeft()
+        } else if (e.keyCode === 38) {
+
+        } else if (e.keyCode === 39) {
+            
+        } else if (e.keyCode === 40) {
+            moveDown()
+        }
+    }
+
+    document.addEventListener("keyup", control)
+
     function moveDown() {
         undraw()
         currentPosition += GRID_WIDTH
@@ -77,5 +92,20 @@ document.addEventListener("DOMContentLoaded", () => {
             currentPosition = 4
             draw()
         }
+    }
+
+    function moveLeft() {
+        undraw()
+        const isAtLeftEdge = currentFigure.some(index => (currentPosition + index) % GRID_WIDTH === 0)
+
+        if (!isAtLeftEdge) {
+            currentPosition -= 1
+        }
+
+        if (currentFigure.some(index => cells[currentPosition + index].classList.contains('taken'))) {
+            currentPosition += 1
+        }
+
+        draw()
     }
 });
