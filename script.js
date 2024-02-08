@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.keyCode === 37) {
             moveLeft()
         } else if (e.keyCode === 38) {
-
+            rotate()
         } else if (e.keyCode === 39) {
             moveRight()
         } else if (e.keyCode === 40) {
@@ -111,6 +111,18 @@ document.addEventListener("DOMContentLoaded", () => {
             currentPosition -= 1
         }
 
+        draw()
+    }
+
+    function rotate() {
+        undraw()
+        currentRotation++
+
+        if (currentRotation === currentFigure.length) {
+            currentRotation = 0
+        }
+
+        currentFigure = figures[random][currentRotation]
         draw()
     }
 
