@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentPosition = 4
     let currentRotation = 0
-    
+
     let random = Math.floor(Math.random() * figures.length)
     let currentFigure = figures[random][currentRotation]
 
@@ -55,5 +55,16 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     }
 
-    draw()
+    function undraw() {
+        currentFigure.forEach(index => {
+            cells[currentPosition + index].classList.remove('figure')
+        })
+    }
+
+    timer = setInterval(moveDown, 1000)
+    function moveDown() {
+        undraw()
+        currentPosition += GRID_WIDTH
+        draw()
+    }
 });
