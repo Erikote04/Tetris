@@ -66,5 +66,16 @@ document.addEventListener("DOMContentLoaded", () => {
         undraw()
         currentPosition += GRID_WIDTH
         draw()
+        freeze()
+    }
+
+    function freeze() {
+        if (currentFigure.some(index => cells[currentPosition + index + GRID_WIDTH].classList.contains('taken'))) {
+            currentFigure.forEach(index => cells[currentPosition + index].classList.add('taken'))
+            random = Math.floor(Math.random() * figures.length)
+            currentFigure = figures[random][currentRotation]
+            currentPosition = 4
+            draw()
+        }
     }
 });
