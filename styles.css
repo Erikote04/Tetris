@@ -8,12 +8,48 @@ body {
     background-color: #2d2d2d;
 }
 
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 h3 {
     color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#start-btn {
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+
+    font-size: 16px;
+
+    border: none;
+    border-radius: 4px;
+
+    color: #fff;
+    background-color: green;
+}
+
+#start-btn:hover {
+    background-color: darkgreen;
 }
 
 .container {
     display: flex;
+}
+
+.board,
+.mini-board {
+    box-shadow: 0 20px 20px rgba(0, 0, 0, .7);
 }
 
 .board {
