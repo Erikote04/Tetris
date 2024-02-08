@@ -42,4 +42,15 @@ document.addEventListener("DOMContentLoaded", () => {
     ]
 
     const figures = [L, Z, T, O, I]
+
+    let currentPosition = 4
+    let currentFigure = figures[0][0]
+
+    function draw() {
+        currentFigure.forEach(index => {
+            cells[currentPosition + index].classList.add('figure')
+        })
+    }
+
+    draw()
 });
