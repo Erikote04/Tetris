@@ -144,6 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
             draw()
             displayFigure()
             addScore()
+            gameOver()
         }
     }
 
@@ -180,6 +181,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 cells = cellsRemoved.concat(cells)
                 cells.forEach(cell => board.appendChild(cell))
             }
+        }
+    }
+
+    function gameOver() {
+        if (currentFigure.some(index => cells[currentPosition + index].classList.contains("taken"))) {
+            scoreDisplay.innerHTML += " - GAME OVER"
+            clearInterval(timer)
         }
     }
 
