@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let displayIndex = 0
     let nextRandom = 0
 
+    const DROP_INTERVAL = 1000
+    let timer 
+
     const L = [
         [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, 2],
         [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2, GRID_WIDTH * 2 + 2],
@@ -65,8 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
             cells[currentPosition + index].classList.remove('figure')
         })
     }
-
-    timer = setInterval(moveDown, 1000)
 
     function control(e) {
         if (e.keyCode === 37) {
@@ -159,4 +160,16 @@ document.addEventListener("DOMContentLoaded", () => {
             displayCells[displayIndex + index].classList.add("figure")
         })
     }
+
+    startBtn.addEventListener("click", () => {
+        if (timer) {
+            clearInterval(timer);
+            timer = null
+        } else {
+            draw()
+            timer = setInterval(moveDown, DROP_INTERVAL)
+            nextRandom = Math.floor(Math.random() * figures.length)
+            displayFigure()
+        }
+    })
 });
