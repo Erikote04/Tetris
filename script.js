@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const DROP_INTERVAL = 1000
     let timer 
 
+    let score = 0
+
     const L = [
         [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, 2],
         [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2, GRID_WIDTH * 2 + 2],
@@ -141,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
             currentPosition = 4
             draw()
             displayFigure()
+            addScore()
         }
     }
 
@@ -159,6 +162,25 @@ document.addEventListener("DOMContentLoaded", () => {
         nextFigures[nextRandom].forEach(index => {
             displayCells[displayIndex + index].classList.add("figure")
         })
+    }
+
+    function addScore() {
+        for (let i = 0; i < 199; i += GRID_WIDTH) {
+            const row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9]
+
+            if (row.every(index => cells[index].classList.contains("taken"))) {
+                console.log("score")
+                score += 10
+                scoreDisplay.innerHTML = score
+                row.forEach(index => {
+                    cells[index].classList.remove("taken")
+                    cells[index].classList.remove("figure")
+                })
+                const cellsRemoved = cells.splice(i, GRID_WIDTH)
+                cells = cellsRemoved.concat(cells)
+                cells.forEach(cell => board.appendChild(cell))
+            }
+        }
     }
 
     startBtn.addEventListener("click", () => {
