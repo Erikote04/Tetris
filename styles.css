@@ -12,6 +12,10 @@ h3 {
     color: #ffffff;
 }
 
+.container {
+    display: flex;
+}
+
 .board {
     width: 400px;
     height: 800px;
@@ -29,4 +33,20 @@ h3 {
 
 .figure {
     background-color: #925ff0;
+}
+
+.mini-board {
+    width: 160px;
+    height: 160px;
+    margin-left: 40px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    background-color: #000000;
+}
+
+.mini-board div {
+    width: 40px;
+    height: 40px;
 }
