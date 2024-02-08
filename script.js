@@ -16,6 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let score = 0
 
+    const colors = [
+        "red",
+        "blue",
+        "green",
+        "purple",
+        "yellow",
+    ]
+
     const L = [
         [1, GRID_WIDTH + 1, GRID_WIDTH * 2 + 1, 2],
         [GRID_WIDTH, GRID_WIDTH + 1, GRID_WIDTH + 2, GRID_WIDTH * 2 + 2],
@@ -62,12 +70,16 @@ document.addEventListener("DOMContentLoaded", () => {
     function draw() {
         currentFigure.forEach(index => {
             cells[currentPosition + index].classList.add('figure')
+            cells[currentPosition + index].style.backgroundColor = colors[random]
+            cells[currentPosition + index].style.border = "1px solid black"
         })
     }
 
     function undraw() {
         currentFigure.forEach(index => {
             cells[currentPosition + index].classList.remove('figure')
+            cells[currentPosition + index].style.backgroundColor = ""
+            cells[currentPosition + index].style.border = ""
         })
     }
 
@@ -82,8 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
             moveDown()
         }
     }
-
-    document.addEventListener("keyup", control)
 
     function moveDown() {
         undraw()
@@ -159,9 +169,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function displayFigure() {
         displayCells.forEach(cell => {
             cell.classList.remove("figure")
+            cell.style.backgroundColor = ""
+            cell.style.border = ""
         })
         nextFigures[nextRandom].forEach(index => {
             displayCells[displayIndex + index].classList.add("figure")
+            displayCells[displayIndex + index].style.backgroundColor = colors[nextRandom]
+            displayCells[displayIndex + index].style.border = "1px solid black"
         })
     }
 
@@ -176,6 +190,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 row.forEach(index => {
                     cells[index].classList.remove("taken")
                     cells[index].classList.remove("figure")
+                    cells[index].style.backgroundColor = ""
+                    cells[index].style.border = ""
                 })
                 const cellsRemoved = cells.splice(i, GRID_WIDTH)
                 cells = cellsRemoved.concat(cells)
@@ -202,4 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
             displayFigure()
         }
     })
+
+    document.addEventListener("keyup", control)
 });
