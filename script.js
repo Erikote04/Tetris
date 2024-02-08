@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (e.keyCode === 38) {
 
         } else if (e.keyCode === 39) {
-            
+            moveRight()
         } else if (e.keyCode === 40) {
             moveDown()
         }
@@ -82,16 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
         currentPosition += GRID_WIDTH
         draw()
         freeze()
-    }
-
-    function freeze() {
-        if (currentFigure.some(index => cells[currentPosition + index + GRID_WIDTH].classList.contains('taken'))) {
-            currentFigure.forEach(index => cells[currentPosition + index].classList.add('taken'))
-            random = Math.floor(Math.random() * figures.length)
-            currentFigure = figures[random][currentRotation]
-            currentPosition = 4
-            draw()
-        }
     }
 
     function moveLeft() {
@@ -107,5 +97,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         draw()
+    }
+
+    function moveRight() {
+        undraw()
+        const isAtRightEdge = currentFigure.some(index => (currentPosition + index) % GRID_WIDTH === GRID_WIDTH - 1)
+
+        if (!isAtRightEdge) {
+            currentPosition += 1
+        }
+
+        if (currentFigure.some(index => cells[currentPosition + index].classList.contains('taken'))) {
+            currentPosition -= 1
+        }
+
+        draw()
+    }
+
+    function freeze() {
+        if (currentFigure.some(index => cells[currentPosition + index + GRID_WIDTH].classList.contains('taken'))) {
+            currentFigure.forEach(index => cells[currentPosition + index].classList.add('taken'))
+            random = Math.floor(Math.random() * figures.length)
+            currentFigure = figures[random][currentRotation]
+            currentPosition = 4
+            draw()
+        }
     }
 });
