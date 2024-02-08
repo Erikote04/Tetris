@@ -44,7 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const figures = [L, Z, T, O, I]
 
     let currentPosition = 4
-    let currentFigure = figures[0][0]
+    let currentRotation = 0
+    
+    let random = Math.floor(Math.random() * figures.length)
+    let currentFigure = figures[random][currentRotation]
 
     function draw() {
         currentFigure.forEach(index => {
