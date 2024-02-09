@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         undraw()
         currentRotation++
 
-        if (currentRotation === current.length) {
+        if (currentRotation === currentTetrominoe.length) {
             currentRotation = 0
         }
 
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function gameOver() {
-        if (current.some(index => squares[currentPosition + index].classList.contains('block2'))) {
+        if (currentTetrominoe.some(index => squares[currentPosition + index].classList.contains('block2'))) {
             scoreDisplay.innerHTML = 'end'
             clearInterval(timer)
         }
